@@ -4,7 +4,7 @@ import shutil
 
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 from config import TRANSCRIPTS_DIR, VECTORSTORE_DIR, TRANSCRIPT_LIMIT
 from embeddings import get_embedding_function

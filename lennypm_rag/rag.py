@@ -1,8 +1,8 @@
 from typing import List, Optional
 
-from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.schema import AIMessage, HumanMessage, SystemMessage
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 from config import OPENAI_API_KEY, VECTORSTORE_DIR
 from embeddings import get_embedding_function
