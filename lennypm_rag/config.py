@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 
+# Disable chromadb telemetry to avoid protobuf conflicts
+os.environ["CHROMADB_TELEMETRY_DISABLED"] = "true"
+
 from dotenv import load_dotenv
 
 load_dotenv()

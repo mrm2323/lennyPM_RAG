@@ -1,3 +1,6 @@
+import os
+os.environ["CHROMADB_TELEMETRY_DISABLED"] = "true"
+
 import streamlit as st
 from rag import answer_query, format_sources
 
