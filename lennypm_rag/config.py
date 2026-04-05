@@ -1,8 +1,13 @@
 import os
+import sys
 from pathlib import Path
 
-# Disable chromadb telemetry to avoid protobuf conflicts
+# Disable chromadb telemetry BEFORE any imports that might use it
 os.environ["CHROMADB_TELEMETRY_DISABLED"] = "true"
+os.environ["OTEL_SDK_DISABLED"] = "true"
+
+# Mock out problematic telemetry modules before they're imported
+sys.modules["chromadb.telemetry.opentelemetry"] = None
 
 from dotenv import load_dotenv
 

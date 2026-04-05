@@ -1,5 +1,10 @@
 import os
+import sys
+
+# Disable chromadb telemetry BEFORE any imports
 os.environ["CHROMADB_TELEMETRY_DISABLED"] = "true"
+os.environ["OTEL_SDK_DISABLED"] = "true"
+sys.modules["chromadb.telemetry.opentelemetry"] = None
 
 import streamlit as st
 from rag import answer_query, format_sources
