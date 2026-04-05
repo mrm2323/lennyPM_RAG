@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+vectorstore/
+.envlennypm_rag/vectorstore/
+*.pyc
+.DS_Store
+*.egg-info/
+dist/
+build/

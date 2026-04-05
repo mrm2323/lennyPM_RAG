@@ -1,0 +1,9 @@
+langchain>=0.0.433
+openai>=1.0.0
+streamlit>=1.24.0
+chromadb>=0.4.0
+python-dotenv>=1.0.0
+tiktoken>=0.6.0
+pinecone>=2.0.0
+cohere>=5.5.0
+sentence-transformers>=2.3.0
