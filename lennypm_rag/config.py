@@ -2,12 +2,21 @@ import os
 import sys
 from pathlib import Path
 
-# Disable chromadb telemetry BEFORE any imports that might use it
+# Disable chromadb telemetry BEFORE any imports of anything that uses it
 os.environ["CHROMADB_TELEMETRY_DISABLED"] = "true"
 os.environ["OTEL_SDK_DISABLED"] = "true"
 
-# Mock out problematic telemetry modules before they're imported
-sys.modules["chromadb.telemetry.opentelemetry"] = None
+# Block problematic telemetry modules
+import importlib.abc
+import importlib.machinery
+
+class BlockedImporter(importlib.abc.MetaPathFinder):
+    def find_module(self, fullname, path=None):
+        if "opentelemetry" in fullname or "chromadb.telemetry" in fullname:
+            return importlib.machinery.NullImporter(fullname)
+        return None
+
+sys.meta_path.insert(0, BlockedImporter())
 
 from dotenv import load_dotenv
 

@@ -4,7 +4,18 @@ import sys
 # Disable chromadb telemetry BEFORE any imports
 os.environ["CHROMADB_TELEMETRY_DISABLED"] = "true"
 os.environ["OTEL_SDK_DISABLED"] = "true"
-sys.modules["chromadb.telemetry.opentelemetry"] = None
+
+# Prevent telemetry module from loading
+import importlib.abc
+import importlib.machinery
+
+class BlockedImporter(importlib.abc.MetaPathFinder):
+    def find_module(self, fullname, path=None):
+        if "opentelemetry" in fullname or "chromadb.telemetry" in fullname:
+            return importlib.machinery.NullImporter(fullname)
+        return None
+
+sys.meta_path.insert(0, BlockedImporter())
 
 import streamlit as st
 from rag import answer_query, format_sources
