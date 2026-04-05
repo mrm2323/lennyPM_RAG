@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import List
 import shutil
 
-from langchain.schema import Document
+from langchain_core.documents import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 

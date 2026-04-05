@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from langchain_openai import ChatOpenAI
-from langchain.schema import AIMessage, HumanMessage, SystemMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_chroma import Chroma
 
 from config import OPENAI_API_KEY, VECTORSTORE_DIR
